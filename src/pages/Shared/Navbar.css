@@ -1,0 +1,10 @@
+
+.nav-link {
+    text-decoration: none;
+    color: purple;
+    margin: 0 10px;
+    transition: color 0.3s ease; 
+    
+  }
+
+  
