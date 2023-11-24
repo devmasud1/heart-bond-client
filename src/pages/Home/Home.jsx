@@ -1,7 +1,11 @@
+import Banner from "./Banner";
+import PremiumMember from "./PremiumMember";
+
 const Home = () => {
     return(
         <div>
-             <p> This is Home section</p>
+             <Banner/>
+             <PremiumMember/>
         </div>
     )}
 export default Home;

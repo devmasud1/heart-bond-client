@@ -1,0 +1,51 @@
+[
+    {
+      "biodataId": 1,
+      "biodataType": "Male",
+      "profileImage": "https://i.ibb.co/Np6sTG0/man4.jpg",
+      "permanentDivision": "Dhaka",
+      "age": 20,
+      "occupation": "Student"
+    },
+    {
+      "biodataId": 2,
+      "biodataType": "Female",
+      "profileImage": "https://i.ibb.co/1rWn1ky/9.jpg",
+      "permanentDivision": "Rangpur",
+      "age": 26,
+      "occupation": "teacher"
+    },
+    {
+      "biodataId": 3,
+      "biodataType": "Male",
+      "profileImage": "https://i.ibb.co/Np6sTG0/man4.jpg",
+      "permanentDivision": "Barisal",
+      "age": 21,
+      "occupation": "Student"
+    },
+    {
+      "biodataId": 4,
+      "biodataType": "Male",
+      "profileImage": "https://i.ibb.co/Np6sTG0/man4.jpg",
+      "permanentDivision": "Dhaka",
+      "age": 23,
+      "occupation": "Student"
+    },
+    {
+      "biodataId": 5,
+      "biodataType": "Female",
+      "profileImage": "https://i.ibb.co/1rWn1ky/9.jpg",
+      "permanentDivision": "Rangpur",
+      "age": 24,
+      "occupation": "teacher"
+    },
+    {
+      "biodataId": 6,
+      "biodataType": "Male",
+      "profileImage": "https://i.ibb.co/Np6sTG0/man4.jpg",
+      "permanentDivision": "Dhaka",
+      "age": 27,
+      "occupation": "Student"
+    }
+  ]
+  
