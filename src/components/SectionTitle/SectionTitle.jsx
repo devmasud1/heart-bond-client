@@ -9,7 +9,7 @@ const SectionTitle = ({ title }) => {
       sx={{
         color: "secondary",
         fontWeight: "600",
-        mb: "30px",
+        mb: "40px",
         "&::after": {
           content: '""',
           display: "block",
