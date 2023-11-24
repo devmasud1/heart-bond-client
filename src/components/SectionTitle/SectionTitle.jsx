@@ -1,29 +1,9 @@
-import Typography from "@mui/material/Typography";
-
 const SectionTitle = ({ title }) => {
   return (
-    <Typography
-      variant="h6"
-      textAlign="center"
-      component="div"
-      sx={{
-        color: "secondary",
-        fontWeight: "600",
-        mb: "40px",
-        "&::after": {
-          content: '""',
-          display: "block",
-          width: "140px",
-          height: "2px",
-          backgroundColor: "red",
-          marginBottom: "25px",
-          textAlign: "center",
-          margin: "auto",
-        },
-      }}
-    >
-      {title}
-    </Typography>
+    <div className="text-center my-10">
+      <h6 className="text-2xl lg:text-4xl text-secondary font-semibold mb-1">{title}</h6>
+      <div className="w-40 h-[2px] bg-red-500 mx-auto mb-8"></div>
+    </div>
   );
 };
 

@@ -1,44 +1,48 @@
-import React from 'react';
-import { Container, Grid, Typography, Link } from '@mui/material';
-
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#f5f5f5', padding: '20px 0' }}>
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6">About HeartBond</Typography>
-            <Typography variant="body2">
-              HeartBond is dedicated to helping individuals find their life partners.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6">Useful Links</Typography>
-            <Typography variant="body2">
-              <Link href="#">Home</Link>
-              <br />
-              <Link href="#">Biodatas</Link>
-              <br />
-              <Link href="#">About Us</Link>
-              <br />
-              <Link href="#">Contact Us</Link>
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6">Contact</Typography>
-            <Typography variant="body2">
+    <footer className="bg-gray-100 py-5 space-y-3">
+      <div className="container mx-auto px-4 lg:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <h6 className="text-xl font-semibold">About HeartBond</h6>
+            <p className="text-sm mt-2">
+              HeartBond is dedicated to helping individuals find their life
+              partners.
+            </p>
+          </div>
+          <div>
+            <h6 className="text-xl font-semibold">Useful Links</h6>
+            <p className="text-sm mt-2">
+              <a href="#" className="block mb-2">
+                Home
+              </a>
+              <a href="#" className="block mb-2">
+                Biodatas
+              </a>
+              <a href="#" className="block mb-2">
+                About Us
+              </a>
+              <a href="#" className="block mb-2">
+                Contact Us
+              </a>
+            </p>
+          </div>
+          <div>
+            <h6 className="text-xl font-semibold">Contact</h6>
+            <p className="text-sm mt-2">
               Address: 1234 HeartBond St, City, Country
               <br />
               Email: info@heartbond.com
               <br />
               Phone: +1234567890
-            </Typography>
-          </Grid>
-        </Grid>
-        <Typography variant="body2" style={{ marginTop: '20px', textAlign: 'center' }}>
-          © {new Date().getFullYear()} HeartBond Matrimony. All rights reserved.
-        </Typography>
-      </Container>
+            </p>
+          </div>
+        </div>
+        <p className="text-sm text-center mt-6">
+          &copy; {new Date().getFullYear()} HeartBond Matrimony. All rights
+          reserved.
+        </p>
+      </div>
     </footer>
   );
 };

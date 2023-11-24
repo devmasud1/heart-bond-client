@@ -1,16 +1,17 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../pages/Shared/Navbar";
 import Footer from "../pages/Shared/Footer";
-import { Container } from "@mui/material";
+// import { Container } from "@mui/material";
+import NavBar from "../pages/Shared/Navbar";
+
 
 const MainLayout = () => {
   return (
     <div>
-      <Navbar />
-      <Container maxWidth="xl">
+      <NavBar />
+     
         <Outlet />
         <Footer />
-      </Container>
+    
     </div>
   );
 };

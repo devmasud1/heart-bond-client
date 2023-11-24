@@ -1,76 +1,52 @@
-import { Card, CardContent, Typography, Button, Grid, Skeleton } from "@mui/material";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import usePremiumBioData from "../../hook/usePremiumBioData";
+import { Card, Button } from "flowbite-react";
 
 const PremiumMember = () => {
-  const [premiumBio, loading] = usePremiumBioData();
+  const [premiumBio] = usePremiumBioData();
 
-  // Sort on age in ascending order
+  //Sort on age in ascending order
   const sortedProfiles = premiumBio.sort((a, b) => a.age - b.age);
 
   return (
-    <Grid>
+    <div className="w-11/12 mx-auto my-16 lg:my-20">
       <SectionTitle title="Our Premium member" />
-      <Grid
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {loading ? (
-          Array.from({ length: 3 }).map((_, index) => (
-            <Card key={index} style={{ maxWidth: 400, marginBottom: 30 }}>
-              <CardContent>
-                <Skeleton variant="rectangular" width={400} height={60} />
-                <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-                <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-                <Skeleton variant="rectangular" width="100%" height={200} />
-                <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-                <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-                <Skeleton
-                  variant="text"
-                  sx={{ fontSize: '1rem', width: '60%', marginTop: 1 }}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {sortedProfiles.map((profile, idx) => (
+          <Card
+            key={idx}
+            className="full"
+            imgSrc={profile.profileImage}
+            horizontal
+          >
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Biodata ID: {profile.biodataId}
+            </h5>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              Permanent Division: {profile.permanentDivision}
+            </p>
+            <p>Occupation: {profile.occupation} </p>
+
+            <p> Biodata Type: {profile.biodataType}</p>
+            <Button>
+              View Profile
+              <svg
+                className="-mr-1 ml-2 h-4 w-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
                 />
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          // Render actual data when loading is false
-          sortedProfiles.slice(0,6).map((profile, index) => (
-            <Card key={index} style={{ maxWidth: 400, marginBottom: 30 }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Biodata ID: {profile.biodataId}
-                </Typography>
-                <Typography variant="body1">
-                  Biodata Type: {profile.biodataType}
-                </Typography>
-                <img
-                  src={profile.profileImage}
-                  alt={`Profile ${profile.biodataId}`}
-                  style={{ width: "100%", marginTop: 10, marginBottom: 10 }}
-                />
-                <Typography variant="body2">
-                  Division: {profile.permanentDivision}
-                </Typography>
-                <Typography variant="body2">Age: {profile.age}</Typography>
-                <Typography variant="body2">
-                  Occupation: {profile.occupation}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  style={{ marginTop: 10 }}
-                >
-                  View Profile
-                </Button>
-              </CardContent>
-            </Card>
-          ))
-        )}
-      </Grid>
-    </Grid>
+              </svg>
+            </Button>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 };
 
