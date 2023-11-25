@@ -2,34 +2,37 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../hook/provider/AuthProvider";
+import toast from "react-hot-toast";
 const Signup = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  const loadingToast = toast.loading("creating...");
   const handleSignUp = (e) => {
     e.preventDefault();
-
     const form = e.target;
-
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     const photoUrl = form.photoUrl.value;
 
-    createUser(email, password)
-    .then(res => {
-        const logged = res.user;
-        console.log(logged)
-
-        updateUserProfile(name, photoUrl)
-        .then(data => {
-            console.log('update user',data)
+    createUser(email, password).then(() => {
+      updateUserProfile(name, photoUrl)
+        .then(() => {
+          toast.success("successfully account create", { id: loadingToast });
+          form.reset();
         })
-    })
+        .catch((err) => {
+          toast.dismiss(loadingToast);
+          toast.error("something wrong!", err.message);
+          form.reset();
+        });
+    });
 
-    console.log(name, email, password, photoUrl);
+    // console.log(name, email, password, photoUrl);
   };
 
   return (
-    <div className="flex w-11/12 mx-auto h-screen justify-center items-center">
+    <div className="flex w-11/12 mx-auto h-[76vh] justify-center items-center">
       <form
         onSubmit={handleSignUp}
         className="flex w-full  md:w-3/4 lg:w-3/4 xl:w-1/3 border-2 flex-col gap-4 p-10 shadow-lg"

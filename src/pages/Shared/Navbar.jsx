@@ -2,11 +2,11 @@ import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../hook/provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const { user, userSignOut } = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
-  console.log(user)
 
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -24,12 +24,18 @@ const NavBar = () => {
     };
   }, []);
 
+
   const handleSignOutUser = () => {
+    const loadingToast = toast.loading("Loading...");
     userSignOut()
-    .then(() => {
-      console.log('log out')
-    })
-  }
+      .then(() => {
+        toast.success("successfully LogOut", { id: loadingToast });
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error("something wrong!", err.message);
+      });
+  };
   const navItem = (
     <>
       <li className="hover:text-orange-600 transition-all duration-1000 ease-in-out">
@@ -111,7 +117,7 @@ const NavBar = () => {
       fluid
       rounded
       className={`w-11/12 mx-auto fixed top-0 left-0 right-0 z-10 text-slate-200 ${
-        scrolled ? "bg-black" : "bg-transparent"
+        scrolled ? "bg-slate-100 text-black" : "bg-transparent"
       }`}
     >
       <Navbar.Brand>
@@ -145,8 +151,7 @@ const NavBar = () => {
               </span>
             </Dropdown.Header>
             <Dropdown.Item>Dashboard</Dropdown.Item>
-          
-           
+
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignOutUser}>Sign out</Dropdown.Item>
           </Dropdown>

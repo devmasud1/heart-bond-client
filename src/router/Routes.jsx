@@ -21,19 +21,19 @@ const Routes = createBrowserRouter([
           path: "/biodatas",
           element: <BioData />,
         },
-        
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Signup />,
+        },
         
       ],
       
     },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
+   
   ]);
 
   export default Routes;

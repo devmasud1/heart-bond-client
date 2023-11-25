@@ -3,33 +3,45 @@ import { Link } from "react-router-dom";
 import { FaGooglePlusG } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../hook/provider/AuthProvider";
+import toast from "react-hot-toast";
+
+
 
 const Login = () => {
-  const {googleSignIn, userLogIn} = useContext(AuthContext);
+  const { googleSignIn, userLogIn } = useContext(AuthContext);
   const handleLogIn = (e) => {
+    const loadingToast = toast.loading("Logging...");
     e.preventDefault();
 
     const form = e.target;
-
     const email = form.email.value;
     const password = form.password.value;
 
     userLogIn(email, password)
-    .then(() => {
-      console.log('login success')
-    })
+      .then(() => {
+        toast.success("Login successful", { id: loadingToast });
+        form.reset();
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error("something wrong!", err.message);
+        form.reset();
+      });
   };
 
   const handleGoogleSignIn = () => {
-    console.log('click')
+    const loadingToast = toast.loading("Logging...");
     googleSignIn()
-    .then(res => {
-      console.log(res.user)
-    })
-
-  }
+      .then(() => {
+        toast.success("Login successful", { id: loadingToast });
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error("something wrong!", err.message);
+      });
+  };
   return (
-    <div className="flex w-11/12 mx-auto h-screen justify-center items-center">
+    <div className="flex w-11/12 mx-auto h-[76vh] justify-center items-center">
       <form
         onSubmit={handleLogIn}
         className="flex w-full  md:w-3/4 lg:w-3/4 xl:w-1/3 border-2 flex-col gap-4 p-10 shadow-lg"
@@ -61,7 +73,10 @@ const Login = () => {
 
         <Button type="submit">login</Button>
 
-        <Button color="blue" onClick={handleGoogleSignIn}> <FaGooglePlusG className="text-2xl font-semibold"/> </Button>
+        <Button color="blue" onClick={handleGoogleSignIn}>
+          {" "}
+          <FaGooglePlusG className="text-2xl font-semibold" />{" "}
+        </Button>
 
         <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300 mt-1">
           Not registered?&nbsp;
