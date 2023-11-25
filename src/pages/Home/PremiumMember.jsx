@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import usePremiumBioData from "../../hook/usePremiumBioData";
 import { Card, Button } from "flowbite-react";
 
 const PremiumMember = () => {
   const [premiumBio] = usePremiumBioData();
+  console.log(premiumBio)
 
   //Sort on age in ascending order
   const sortedProfiles = premiumBio.sort((a, b) => a.age - b.age);
@@ -28,6 +30,7 @@ const PremiumMember = () => {
             <p>Occupation: {profile.occupation} </p>
 
             <p> Biodata Type: {profile.biodataType}</p>
+            <Link to={`/premium-member/${profile?._id}`}>
             <Button>
               View Profile
               <svg
@@ -43,6 +46,7 @@ const PremiumMember = () => {
                 />
               </svg>
             </Button>
+            </Link>
           </Card>
         ))}
       </div>

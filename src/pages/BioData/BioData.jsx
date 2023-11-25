@@ -4,7 +4,8 @@ import useAllBioData from "../../hook/useAllBioData";
 import { Button, Card, Label, Select } from "flowbite-react";
 import MultiRangeSlider from "multi-range-slider-react";
 import "./BioData.css";
-import BioDataSlider from "./BioDataSlider";
+import { Link } from "react-router-dom";
+import PageBanner from "../../components/PageBanner/PageBanner";
 
 const BioData = () => {
   const [allBioData] = useAllBioData();
@@ -45,7 +46,7 @@ const BioData = () => {
   return (
     <>
       <PageTitle title="Biodata" />
-      <BioDataSlider />
+      <PageBanner heading='All Biodata available here'/>
       <div className="flex flex-col lg:flex-row  w-11/12 mx-auto  my-10">
         {/* Left Side: Filters (Fixed) */}
         <div className="lg:w-[22%] md:w-1/2 md:mx-auto pr-8 h-[40vh] overflow-y-auto lg:fixed left-4 lg:left-14 xl:left-20  bottom-1/4 mb-8 lg:mb-0 bg-gray-200 p-5">
@@ -131,6 +132,7 @@ const BioData = () => {
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Occupation: {bioData?.Occupation}
                   </p>
+                  <Link to={`/biodata/${bioData?._id}`}>
                   <Button>
                     View Profile
                     <svg
@@ -146,6 +148,7 @@ const BioData = () => {
                       />
                     </svg>
                   </Button>
+                  </Link>
                 </Card>
               ))
             ) : (
