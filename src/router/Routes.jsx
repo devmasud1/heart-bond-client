@@ -5,6 +5,8 @@ import {
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import BioData from "../pages/BioData/BioData";
+import Login from "../pages/Authentication/Login";
+import Signup from "../pages/Authentication/Signup";
 
 const Routes = createBrowserRouter([
     {
@@ -20,7 +22,17 @@ const Routes = createBrowserRouter([
           element: <BioData />,
         },
         
+        
       ],
+      
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
   ]);
 

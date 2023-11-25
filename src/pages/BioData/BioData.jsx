@@ -1,6 +1,6 @@
 const BioData = () => {
     return(
-        <div>
+        <div className="w-11/12 mx-auto">
              <p> This is BioData section</p>
         </div>
     )}
