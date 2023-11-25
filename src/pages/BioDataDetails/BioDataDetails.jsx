@@ -31,7 +31,7 @@ const BioDataDetails = () => {
 
   return (
     <div>
-      <PageBanner heading='Biodata Details'/>
+      <PageBanner heading="Biodata Details" />
       <div className="w-11/12 mx-auto my-10">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* left-side */}
@@ -45,7 +45,11 @@ const BioDataDetails = () => {
                   <MdFavorite className="text-2xl text-red-600" />
                 </Button>
               </div>
-              <img src={Profile_Image} alt="" />
+              <img
+                src={Profile_Image}
+                alt=""
+                className="w-full  h-[450px] object-cover"
+              />
 
               <div className="p-8 space-y-1">
                 <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -101,9 +105,13 @@ const BioDataDetails = () => {
                 <Card
                   key={idx}
                   className="w-full max-w-xs sm:max-w-sm lg:max-w-none mx-auto lg:mx-0"
-                  imgAlt="image"
-                  imgSrc={bioData?.Profile_Image}
+                  
                 >
+                   <img
+                src={bioData?.Profile_Image}
+                alt=""
+                className="w-full h-[180px] object-cover"
+              />
                   <div>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
                       Division: {bioData.Permanent_Division}

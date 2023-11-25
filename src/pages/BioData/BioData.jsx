@@ -46,7 +46,7 @@ const BioData = () => {
   return (
     <>
       <PageTitle title="Biodata" />
-      <PageBanner heading='All Biodata available here'/>
+      <PageBanner heading="All Biodata available here" />
       <div className="flex flex-col lg:flex-row  w-11/12 mx-auto  my-10">
         {/* Left Side: Filters (Fixed) */}
         <div className="lg:w-[22%] md:w-1/2 md:mx-auto pr-8 h-[40vh] overflow-y-auto lg:fixed left-4 lg:left-14 xl:left-20  bottom-1/4 mb-8 lg:mb-0 bg-gray-200 p-5">
@@ -62,8 +62,8 @@ const BioData = () => {
               onChange={handleRangeChange}
             />
             <div className="flex justify-evenly">
-              <p >Min Age: {minValue}</p>
-              <p >Max Age: {maxValue}</p>
+              <p>Min Age: {minValue}</p>
+              <p>Max Age: {maxValue}</p>
             </div>
           </div>
 
@@ -111,12 +111,12 @@ const BioData = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBioData.length ? (
               filteredBioData.map((bioData, idx) => (
-                <Card
-                  key={idx}
-                  className=""
-                  imgAlt="Profile_Image"
-                  imgSrc={bioData?.Profile_Image}
-                >
+                <Card key={idx}>
+                  <img
+                    src={bioData?.Profile_Image}
+                    alt="Profile_Image"
+                    style={{ height: "200px", objectFit: "cover" }}
+                  />
                   <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                     Biodata Id: {bioData?.Biodata_Id}
                   </h5>
@@ -133,21 +133,21 @@ const BioData = () => {
                     Occupation: {bioData?.Occupation}
                   </p>
                   <Link to={`/biodata/${bioData?._id}`}>
-                  <Button>
-                    View Profile
-                    <svg
-                      className="-mr-1 ml-2 h-4 w-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </Button>
+                    <Button>
+                      View Profile
+                      <svg
+                        className="-mr-1 ml-2 h-4 w-4"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </Button>
                   </Link>
                 </Card>
               ))
