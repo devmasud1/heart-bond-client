@@ -2,7 +2,7 @@ import { Sidebar } from "flowbite-react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const isAdmin = false;
 
   //normal user
   const userDashboardMenu = (
