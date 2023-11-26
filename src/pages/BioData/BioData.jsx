@@ -120,15 +120,19 @@ const BioData = () => {
                   <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                     Biodata Id: {bioData?.Biodata_Id}
                   </h5>
+                  <p className="font-medium text-gray-700 dark:text-gray-400">
+                   {bioData?.Name}
+                  </p>
+                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                   Age: {bioData?.Age}
+                  </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Biodata Type: {bioData?.Biodata_Type}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Permanent Division: {bioData?.Permanent_Division}
                   </p>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Age: {bioData?.Age}
-                  </p>
+                  
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Occupation: {bioData?.Occupation}
                   </p>

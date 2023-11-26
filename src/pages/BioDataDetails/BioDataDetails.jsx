@@ -3,20 +3,29 @@ import { Button, Card } from "flowbite-react";
 import useAllBioData from "../../hook/useAllBioData";
 import { MdFavorite } from "react-icons/md";
 import PageBanner from "../../components/PageBanner/PageBanner";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../hook/provider/AuthProvider";
+import useAxiosPublic from "../../hook/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const BioDataDetails = () => {
   const singleData = useLoaderData();
   const [allBioData] = useAllBioData();
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const {
     Age,
     Biodata_Id,
     Biodata_Type,
+    Name,
     Email,
     Occupation,
     Permanent_Division,
     Phone,
     Profile_Image,
+    Description,
   } = singleData;
 
   const Premium_members = true;
@@ -26,7 +35,45 @@ const BioDataDetails = () => {
   );
 
   const addToFavorite = () => {
-    console.log("added");
+    if (user && user.email) {
+      const favoriteItem = {
+        biodataId: Biodata_Id,
+        email: user.email,
+        permanentAddress: Permanent_Division,
+        Occupation: Occupation,
+        name: Name,
+      };
+
+      axiosPublic
+        .post(`/favorite`, favoriteItem)
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast(`Biodata has been added`, {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            setIsButtonDisabled(true);
+          }
+        })
+        .catch(() => {
+          toast.error("something wrong", {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
+    }
   };
 
   return (
@@ -40,6 +87,7 @@ const BioDataDetails = () => {
               <div className="relative">
                 <Button
                   onClick={addToFavorite}
+                  disabled={isButtonDisabled}
                   className="absolute top-2 right-2 bg-slate-50 w-12 h-12 rounded-full"
                 >
                   <MdFavorite className="text-2xl text-red-600" />
@@ -55,6 +103,12 @@ const BioDataDetails = () => {
                 <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                   Biodata_Id: {Biodata_Id}
                 </h5>
+                <p className=" font-bold text-gray-700 dark:text-gray-400">
+                  {Name}
+                </p>
+                <p className="font-normal text-gray-700 dark:text-gray-400">
+                  Age: {Age}
+                </p>
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   Biodata_Type: {Biodata_Type}
                 </p>
@@ -64,9 +118,7 @@ const BioDataDetails = () => {
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   Occupation: {Occupation}
                 </p>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                  Age: {Age}
-                </p>
+
                 {Premium_members && (
                   <>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
@@ -77,6 +129,9 @@ const BioDataDetails = () => {
                     </p>
                   </>
                 )}
+                <p className="font-normal text-gray-700 dark:text-gray-400">
+                <strong>Description:</strong> {Description}
+                </p>
 
                 <Button>
                   Request Contact Information
@@ -110,8 +165,8 @@ const BioDataDetails = () => {
                       className="w-full h-[180px] object-cover"
                     />
                     <div>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">
-                        Division: {bioData.Permanent_Division}
+                      <p className="font-medium text-gray-700 dark:text-gray-400">
+                        {bioData.Name}
                       </p>
                       <p className="font-normal text-gray-700 dark:text-gray-400">
                         Occupation: {bioData.Occupation}
