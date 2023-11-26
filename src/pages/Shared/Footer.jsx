@@ -4,6 +4,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
+            <img src="https://i.ibb.co/nnHbDZS/H.png" alt="" className="w-[80px]"/>
             <h6 className="text-xl font-semibold">About HeartBond</h6>
             <p className="text-sm mt-2">
               HeartBond is dedicated to helping individuals find their life

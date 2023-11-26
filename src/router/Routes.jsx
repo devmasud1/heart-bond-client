@@ -17,11 +17,13 @@ import ApproveContactRequest from "../pages/Dashboard/Admin/ApproveContactReques
 import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium";
 import ManageUser from "../pages/Dashboard/Admin/ManageUser";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",

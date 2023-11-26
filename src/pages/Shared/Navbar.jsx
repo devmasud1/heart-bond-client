@@ -121,11 +121,11 @@ const NavBar = () => {
       }`}
     >
       <Navbar.Brand>
-        {/* <img
-          src="/favicon.svg"
-          className="mr-3 h-6 sm:h-9"
-          alt="Flowbite React Logo"
-        /> */}
+        <img
+          src="https://i.ibb.co/PFdZ551/logo-removebg-preview.png"
+          className="mr-3 h-6 sm:h-9 sm:bg-slate-800"
+          alt="logo"
+        />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           HeartBond
         </span>
