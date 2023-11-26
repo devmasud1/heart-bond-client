@@ -1,9 +1,12 @@
 import { Button, Label, Select, TextInput } from "flowbite-react";
 import { useState } from "react";
 import useAuth from "./../../../hook/useAuth";
+import useAxiosPublic from "./../../../hook/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const EditBioData = () => {
   const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedHeight, setSelectedHeight] = useState("");
   const [selectedWeight, setSelectedWeight] = useState("");
@@ -61,27 +64,41 @@ const EditBioData = () => {
     const contactEmail = form.contactEmail.value;
 
     const bioData = {
-      name,
-      image,
+      Name: name,
+      Profile_Image: image,
       dataOfBirth,
-      age,
+      Age: age,
       fatherName,
       motherName,
       expectedPartnerAge,
-      contactEmail,
-      selectedGender,
+      Email: contactEmail,
+      Biodata_Type: selectedGender,
       selectedHeight,
       selectedWeight,
       race,
-      permanentDivision,
-      occupation,
+      Permanent_Division: permanentDivision,
+      Occupation: occupation,
       presentDivision,
       expectedPartnerHeight,
       expectedPartnerWeight,
-      mobileNumber,
+      Phone: mobileNumber,
     };
 
-    console.log("Bio Data Object:", bioData);
+    //console.log("Bio Data Object:", bioData);
+    axiosPublic.post("/biodata", bioData).then((res) => {
+      if (res.data.insertedId) {
+        toast.success("Biodata successfully publish!", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    });
   };
 
   return (
@@ -430,7 +447,7 @@ const EditBioData = () => {
             </div>
           </div>
 
-          <Button className="lg:w-1/4 mx-auto mt-2" type="submit">
+          <Button className="w-full lg:w-1/4 mx-auto mt-2" type="submit">
             Save And Publish Now
           </Button>
         </form>
