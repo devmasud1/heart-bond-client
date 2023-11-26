@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../hook/provider/AuthProvider";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { toast } from "react-toastify";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 const BioDataDetails = () => {
   const singleData = useLoaderData();
@@ -78,6 +79,7 @@ const BioDataDetails = () => {
 
   return (
     <div>
+      <PageTitle title='Biodata detalis'/>
       <PageBanner heading="Biodata Details" />
       <div className="w-11/12 mx-auto my-10">
         <div className="flex flex-col lg:flex-row gap-8">
@@ -133,6 +135,8 @@ const BioDataDetails = () => {
                 <strong>Description:</strong> {Description}
                 </p>
 
+                <Link to={`/checkout/${Biodata_Id}`}>
+                
                 <Button>
                   Request Contact Information
                   <svg
@@ -148,6 +152,7 @@ const BioDataDetails = () => {
                     />
                   </svg>
                 </Button>
+                </Link>
               </div>
             </div>
           </div>
