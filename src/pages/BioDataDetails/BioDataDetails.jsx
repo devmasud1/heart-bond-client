@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Button, Card } from "flowbite-react";
 import useAllBioData from "../../hook/useAllBioData";
 import { MdFavorite } from "react-icons/md";
@@ -102,25 +102,23 @@ const BioDataDetails = () => {
             {/* Display similar biodata */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {similarBioData.map((bioData, idx) => (
-                <Card
-                  key={idx}
-                  className="w-full max-w-xs sm:max-w-sm lg:max-w-none mx-auto lg:mx-0"
-                  
-                >
-                   <img
-                src={bioData?.Profile_Image}
-                alt=""
-                className="w-full h-[180px] object-cover"
-              />
-                  <div>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">
-                      Division: {bioData.Permanent_Division}
-                    </p>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">
-                      Occupation: {bioData.Occupation}
-                    </p>
-                  </div>
-                </Card>
+                <Link to={`/biodata/${bioData?._id}`} key={idx}>
+                  <Card className="w-full max-w-xs sm:max-w-sm lg:max-w-none mx-auto lg:mx-0">
+                    <img
+                      src={bioData?.Profile_Image}
+                      alt=""
+                      className="w-full h-[180px] object-cover"
+                    />
+                    <div>
+                      <p className="font-normal text-gray-700 dark:text-gray-400">
+                        Division: {bioData.Permanent_Division}
+                      </p>
+                      <p className="font-normal text-gray-700 dark:text-gray-400">
+                        Occupation: {bioData.Occupation}
+                      </p>
+                    </div>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

@@ -1,14 +1,19 @@
 import { Button, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGooglePlusG } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../hook/provider/AuthProvider";
 import toast from "react-hot-toast";
 
 
-
 const Login = () => {
   const { googleSignIn, userLogIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const from = location?.state?.from?.pathname || "/";
+
   const handleLogIn = (e) => {
     const loadingToast = toast.loading("Logging...");
     e.preventDefault();
@@ -21,6 +26,7 @@ const Login = () => {
       .then(() => {
         toast.success("Login successful", { id: loadingToast });
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.dismiss(loadingToast);
@@ -34,6 +40,7 @@ const Login = () => {
     googleSignIn()
       .then(() => {
         toast.success("Login successful", { id: loadingToast });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.dismiss(loadingToast);

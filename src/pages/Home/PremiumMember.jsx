@@ -5,7 +5,7 @@ import { Card, Button } from "flowbite-react";
 
 const PremiumMember = () => {
   const [premiumBio] = usePremiumBioData();
-  console.log(premiumBio);
+  //console.log(premiumBio);
 
   //Sort on age in ascending order
   const sortedProfiles = premiumBio.sort((a, b) => a.age - b.age);
