@@ -1,15 +1,14 @@
 import { Button, Table } from "flowbite-react";
 import { MdDeleteForever } from "react-icons/md";
 import useAxiosPublic from "../../../hook/useAxiosPublic";
-import { AuthContext } from "../../../hook/provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import useAuth from "../../../hook/useAuth";
 
 const FavoritesBioData = () => {
   const axiosPublic = useAxiosPublic();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   const { data: favBioData = [], refetch } = useQuery({
     queryKey: ["favBioData"],

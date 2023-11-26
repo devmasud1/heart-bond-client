@@ -1,11 +1,11 @@
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
-import { useContext, useEffect, useState } from "react";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../../hook/provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAuth from "../../hook/useAuth";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
-  const { user, userSignOut } = useContext(AuthContext);
+  const { user, userSignOut } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = () => {

@@ -1,8 +1,25 @@
-import { Sidebar } from "flowbite-react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Button, Sidebar } from "flowbite-react";
+import { NavLink,  Outlet, useNavigate } from "react-router-dom";
+import useAuth from './../hook/useAuth';
+import toast from "react-hot-toast";
 
 const DashboardLayout = () => {
   const isAdmin = false;
+   const {userSignOut} = useAuth();
+   const navigate = useNavigate()
+
+  const handleLogOut = () => {
+    const loadingToast = toast.loading("Loading...");
+    userSignOut()
+      .then(() => {
+        toast.success("successfully LogOut", { id: loadingToast });
+        navigate('/')
+      })
+      .catch((err) => {
+        toast.dismiss(loadingToast);
+        toast.error("something wrong!", err.message);
+      });
+  }
 
   //normal user
   const userDashboardMenu = (
@@ -181,6 +198,11 @@ const DashboardLayout = () => {
                 </ul>
                 <hr className="bg-orange-800 my-5" />
                 <ul className="space-y-3 pb-5">{HomeLink}</ul>
+                <Button
+                onClick={handleLogOut}
+                outline gradientDuoTone="redToYellow" className="mb-4">
+                  LogOut
+                </Button>
               </Sidebar.Item>
             </Sidebar.ItemGroup>
           </Sidebar.Items>
