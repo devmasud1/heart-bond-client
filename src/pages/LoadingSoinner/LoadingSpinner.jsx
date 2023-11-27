@@ -2,10 +2,10 @@ import { BallTriangle } from "react-loader-spinner";
 
 const LoadingSpinner = () => {
   return (
-    <div>
+    <div className="h-[70vh] flex justify-center items-center">
       <BallTriangle
-        height={100}
-        width={100}
+        height={80}
+        width={80}
         radius={5}
         color="#4fa94d"
         ariaLabel="ball-triangle-loading"
