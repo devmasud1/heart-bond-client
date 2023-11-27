@@ -4,7 +4,7 @@ import useAuth from './../hook/useAuth';
 import toast from "react-hot-toast";
 
 const DashboardLayout = () => {
-  const isAdmin = false;
+  const isAdmin = true;
    const {userSignOut} = useAuth();
    const navigate = useNavigate()
 
