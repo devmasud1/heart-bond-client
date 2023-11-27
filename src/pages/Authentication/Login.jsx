@@ -4,13 +4,13 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../hook/provider/AuthProvider";
 import toast from "react-hot-toast";
-
+import useAxiosPublic from "./../../hook/useAxiosPublic";
 
 const Login = () => {
   const { googleSignIn, userLogIn } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const from = location?.state?.from?.pathname || "/";
 
@@ -37,15 +37,22 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     const loadingToast = toast.loading("Logging...");
-    googleSignIn()
-      .then(() => {
-        toast.success("Login successful", { id: loadingToast });
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        toast.dismiss(loadingToast);
-        toast.error("something wrong!", err.message);
-      });
+    googleSignIn().then((result) => {
+      const userInfo = {
+        name: result.user.displayName,
+        email: result.user.email,
+      };
+      axiosPublic
+        .post("/users", userInfo)
+        .then(() => {
+          toast.success("Login successful", { id: loadingToast });
+          navigate(from, { replace: true });
+        })
+        .catch((err) => {
+          toast.dismiss(loadingToast);
+          toast.error("something wrong!", err.message);
+        });
+    });
   };
   return (
     <div className="flex w-11/12 mx-auto h-[76vh] justify-center items-center">

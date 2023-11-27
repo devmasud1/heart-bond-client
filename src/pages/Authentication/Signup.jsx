@@ -3,14 +3,15 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../hook/provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../hook/useAxiosPublic";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
-  const loadingToast = toast.loading("creating...");
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,11 +19,21 @@ const Signup = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photoUrl = form.photoUrl.value;
-
+    const loadingToast = toast.loading("loading...");
     createUser(email, password).then(() => {
-      updateUserProfile(name, photoUrl)
-        .then(() => {
-          toast.success("successfully account create", { id: loadingToast });
+      updateUserProfile(name, photoUrl);
+
+      const userInfo = {
+        name: name,
+        email: email,
+      };
+      axiosPublic
+        .post("/users", userInfo)
+
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast.success("successfully account create", { id: loadingToast });
+          }
           form.reset();
           navigate(from, { replace: true });
         })
