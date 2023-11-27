@@ -29,7 +29,6 @@ const Signup = () => {
       };
       axiosPublic
         .post("/users", userInfo)
-
         .then((res) => {
           if (res.data.insertedId) {
             toast.success("successfully account create", { id: loadingToast });

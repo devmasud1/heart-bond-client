@@ -8,6 +8,7 @@ import { AuthContext } from "../../hook/provider/AuthProvider";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { toast } from "react-toastify";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import usePremium from "../../hook/usePremium";
 
 const BioDataDetails = () => {
   const singleData = useLoaderData();
@@ -15,6 +16,8 @@ const BioDataDetails = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const [isPremium] = usePremium();
 
   const {
     Age,
@@ -28,8 +31,6 @@ const BioDataDetails = () => {
     Profile_Image,
     Description,
   } = singleData;
-
-  const Premium_members = true;
 
   const similarBioData = allBioData.filter(
     (bio) => bio.Biodata_Type === Biodata_Type && bio.Biodata_Id !== Biodata_Id
@@ -98,7 +99,7 @@ const BioDataDetails = () => {
               <img
                 src={Profile_Image}
                 alt=""
-                className="w-full  h-[450px] object-cover"
+                className="w-full  max-h-[450px] object-cover"
               />
 
               <div className="p-8 space-y-1">
@@ -121,7 +122,7 @@ const BioDataDetails = () => {
                   Occupation: {Occupation}
                 </p>
 
-                {Premium_members && (
+                {isPremium ? (
                   <>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
                       Phone: {Phone}
@@ -130,28 +131,41 @@ const BioDataDetails = () => {
                       Email: {Email}
                     </p>
                   </>
+                ) : (
+                  <>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                      Phone: only for premium member
+                    </p>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                      Email: only for premium member
+                    </p>
+                  </>
                 )}
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   <strong>Description:</strong> {Description}
                 </p>
 
-                <Link to={`/checkout/${Biodata_Id}`}>
-                  <Button>
-                    Request Contact Information
-                    <svg
-                      className="-mr-1 ml-2 h-4 w-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </Button>
-                </Link>
+                {isPremium ? (
+                  ""
+                ) : (
+                  <Link to={`/checkout/${Biodata_Id}`} className="pt-4">
+                    <Button>
+                      Request Contact Information
+                      <svg
+                        className="-mr-1 ml-2 h-4 w-4"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
