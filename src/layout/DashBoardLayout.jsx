@@ -2,9 +2,10 @@ import { Button, Sidebar } from "flowbite-react";
 import { NavLink,  Outlet, useNavigate } from "react-router-dom";
 import useAuth from './../hook/useAuth';
 import toast from "react-hot-toast";
+import useAdmin from "../hook/useAdmin";
 
 const DashboardLayout = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
    const {userSignOut} = useAuth();
    const navigate = useNavigate()
 
@@ -26,6 +27,20 @@ const DashboardLayout = () => {
     <>
       <li>
         <NavLink
+          to="/dashboard"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          Dashboard
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/dashboard/edit-biodata"
           className={({ isActive, isPending }) =>
             isPending
@@ -35,7 +50,7 @@ const DashboardLayout = () => {
               : ""
           }
         >
-          Edit Biodata
+          Add Biodata
         </NavLink>
       </li>
 
@@ -91,7 +106,7 @@ const DashboardLayout = () => {
     <>
       <li>
         <NavLink
-          to="/dashboard/admin-dashboard"
+          to="/dashboard/admin"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"

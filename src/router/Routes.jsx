@@ -18,12 +18,15 @@ import ApprovedPremium from "../pages/Dashboard/Admin/ApprovedPremium";
 import ManageUser from "../pages/Dashboard/Admin/ManageUser";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AdminRoutes from "./AdminRoutes";
+import Dashboard from "../pages/Dashboard/Dashboard";
+
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -78,8 +81,11 @@ const Routes = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
-
       //normal user
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
       {
         path: "edit-biodata",
         element: <EditBioData />,
@@ -98,21 +104,38 @@ const Routes = createBrowserRouter([
       },
 
       //admin
+
       {
-        path: "admin-dashboard",
-        element: <AdminDashboard />,
+        path: "/dashboard/admin",
+        element: (
+          <AdminRoutes>
+            <AdminDashboard />
+          </AdminRoutes>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUser />,
+        element: (
+          <AdminRoutes>
+            <ManageUser />
+          </AdminRoutes>
+        ),
       },
       {
         path: "approved-premium",
-        element: <ApprovedPremium />,
+        element: (
+          <AdminRoutes>
+            <ApprovedPremium />
+          </AdminRoutes>
+        ),
       },
       {
         path: "approved-request",
-        element: <ApproveContactRequest />,
+        element: (
+          <AdminRoutes>
+            <ApproveContactRequest />
+          </AdminRoutes>
+        ),
       },
     ],
   },

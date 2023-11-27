@@ -103,7 +103,7 @@ const EditBioData = () => {
 
   return (
     <div>
-      <p className="text-xl mb-1"> Add Biodata:</p>
+     <h3 className="text-xl font-semibold mb-4">Add a Biotata: </h3>
 
       <div>
         <form onSubmit={handleAddBio} className="flex flex-col  gap-4">

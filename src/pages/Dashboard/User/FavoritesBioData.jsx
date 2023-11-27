@@ -50,6 +50,7 @@ const FavoritesBioData = () => {
 
   return (
     <div>
+      <h3 className="text-xl font-semibold mb-4">Your Favorite Biotata: </h3>
       <div className="overflow-x-auto">
         <Table>
           <Table.Head>
