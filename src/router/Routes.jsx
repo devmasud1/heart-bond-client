@@ -114,7 +114,7 @@ const Routes = createBrowserRouter([
       //admin
 
       {
-        path: "/dashboard/admin",
+        path: "admin",
         element: (
           <AdminRoutes>
             <AdminDashboard />

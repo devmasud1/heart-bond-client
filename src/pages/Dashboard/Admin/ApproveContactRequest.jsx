@@ -40,7 +40,7 @@ const ApproveContactRequest = () => {
   
 
   return (
-    <div>
+    <div className="lg:p-8">
    
       <p className="text-xl font-medium mb-3 text-gray-500">Contact request: {contactRequest.length}</p>
       <div className="overflow-x-auto">

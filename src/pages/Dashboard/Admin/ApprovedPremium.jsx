@@ -37,7 +37,7 @@ const ApprovedPremium = () => {
   };
 
   return (
-    <div>
+    <div className="lg:p-8">
       <p className="text-xl font-medium mb-3 text-gray-500">Premium request:</p>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border text-center">

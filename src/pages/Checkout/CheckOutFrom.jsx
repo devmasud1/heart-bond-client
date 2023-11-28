@@ -68,6 +68,7 @@ const CheckOutFrom = ({ info }) => {
         const paymentInfo = {
           name: user?.displayName,
           email: user?.email,
+          price:info?.price,
           bioDataId: info?.bioDataId,
           selfBioDataId: info?.selfBioDataID,
           status: "pending",
