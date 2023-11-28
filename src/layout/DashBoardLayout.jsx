@@ -1,44 +1,30 @@
 import { Button, Sidebar } from "flowbite-react";
-import { NavLink,  Outlet, useNavigate } from "react-router-dom";
-import useAuth from './../hook/useAuth';
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import useAuth from "./../hook/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../hook/useAdmin";
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
-   const {userSignOut} = useAuth();
-   const navigate = useNavigate()
+  const { userSignOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     const loadingToast = toast.loading("Loading...");
     userSignOut()
       .then(() => {
         toast.success("successfully LogOut", { id: loadingToast });
-        navigate('/')
+        navigate("/");
       })
       .catch((err) => {
         toast.dismiss(loadingToast);
         toast.error("something wrong!", err.message);
       });
-  }
+  };
 
   //normal user
   const userDashboardMenu = (
     <>
-      <li>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "border-b-2 border-orange-600"
-              : ""
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
       <li>
         <NavLink
           to="/dashboard/edit-biodata"
@@ -214,8 +200,11 @@ const DashboardLayout = () => {
                 <hr className="bg-orange-800 my-5" />
                 <ul className="space-y-3 pb-5">{HomeLink}</ul>
                 <Button
-                onClick={handleLogOut}
-                outline gradientDuoTone="redToYellow" className="mb-4">
+                  onClick={handleLogOut}
+                  outline
+                  gradientDuoTone="redToYellow"
+                  className="mb-4"
+                >
                   LogOut
                 </Button>
               </Sidebar.Item>

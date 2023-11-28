@@ -19,7 +19,7 @@ import ManageUser from "../pages/Dashboard/Admin/ManageUser";
 import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AdminRoutes from "./AdminRoutes";
-import Dashboard from "../pages/Dashboard/Dashboard";
+
 import ContactUs from "./../pages/ContactUs/ContactUs";
 import AboutUs from "./../pages/AboutUs/AboutUs";
 
@@ -90,10 +90,6 @@ const Routes = createBrowserRouter([
     ),
     children: [
       //normal user
-      {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
       {
         path: "edit-biodata",
         element: <EditBioData />,

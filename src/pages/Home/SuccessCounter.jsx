@@ -1,32 +1,34 @@
 import { Card } from "flowbite-react";
+import useAnalytics from "../../hook/useAnalytics";
+import CountUp from "react-countup";
 
 const SuccessCounter = () => {
-  const totalBiodataCount = 1000;
-  const girlsBiodataCount = 600;
-  const boysBiodataCount = 400;
-  const marriagesCompletedCount = 300;
+  const { analytics } = useAnalytics();
 
   return (
     <div className="w-11/12 mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-10 gap-6 my-16 lg:my-20 text-center">
-        <Card className="">
+        <Card className="bg-blue-100">
           <p className="md:text-2xl font-bold tracking-tight text-gray-900">
-            Total Biodata: {totalBiodataCount}
+            <CountUp delay={3} end={analytics?.totalBioData} />
           </p>
         </Card>
-        <Card className="">
+        <Card className="bg-pink-100">
           <p className="md:text-2xl font-bold tracking-tight text-gray-900">
-            Girls: {girlsBiodataCount}
+            Girls:
+            <CountUp delay={4} end={analytics?.totalFemale} />
           </p>
         </Card>
-        <Card className="">
+        <Card className="bg-green-100">
           <p className="md:text-2xl font-bold tracking-tight text-gray-900">
-            Boys: {boysBiodataCount}
+            Boys:
+            <CountUp delay={4} end={analytics?.totalMale} />
           </p>
         </Card>
-        <Card className="">
+        <Card className="bg-yellow-100">
           <p className="md:text-2xl font-bold tracking-tight text-gray-900">
-            Marriages Completed: {marriagesCompletedCount}
+            Completed Marriages:
+            <CountUp delay={5} end={analytics?.completeMarriage} />
           </p>
         </Card>
       </div>

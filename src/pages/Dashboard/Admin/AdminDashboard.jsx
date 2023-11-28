@@ -1,18 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "./../../../hook/useAuth";
-import useAxiosSecure from "./../../../hook/useAxiosSecure";
+import useAnalytics from "../../../hook/useAnalytics";
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-
-  const { data: analytics = {} } = useQuery({
-    queryKey: ["admin-analytics"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/admin-analytics");
-      return res.data;
-    },
-  });
+  const { analytics } = useAnalytics();
   return (
     <div className="w-full h-full">
       <div className="lg:p-8">

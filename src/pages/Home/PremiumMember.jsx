@@ -12,16 +12,17 @@ const PremiumMember = () => {
   return (
     <div className="w-11/12 mx-auto my-16 lg:my-20">
       <SectionTitle title="Our Premium member" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid md:grid-col grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {sortedProfiles.map((profile, idx) => (
           <Card
             key={idx}
-            className="full"
+            className="full "
             imgSrc={profile.profileImage}
             horizontal
+    
           >
             <div>
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Biodata ID: {profile.biodataId}
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
