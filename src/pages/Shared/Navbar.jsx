@@ -7,7 +7,8 @@ import useAdmin from "../../hook/useAdmin";
 
 const NavBar = () => {
   const { user, userSignOut } = useAuth();
-  const [admin] = useAdmin();
+  const [isAdmin] = useAdmin();
+
   const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = () => {
@@ -96,26 +97,10 @@ const NavBar = () => {
         </NavLink>
       </li>
 
-      {admin && (
+      {user && (
         <li className="hover:text-orange-600 transition duration-300 ease-in-out">
           <NavLink
-            to="dashboard/admin"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? "pending"
-                : isActive
-                ? "text-orange-600 border-b-2 border-orange-600"
-                : ""
-            }
-          >
-            DASHBOARD
-          </NavLink>
-        </li>
-      )}
-      {!admin && (
-        <li className="hover:text-orange-600 transition duration-300 ease-in-out">
-          <NavLink
-            to="dashboard/edit-biodata"
+            to={isAdmin ? "/dashboard/admin" : "/dashboard/edit-biodata"}
             className={({ isActive, isPending }) =>
               isPending
                 ? "pending"
