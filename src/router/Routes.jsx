@@ -22,6 +22,7 @@ import AdminRoutes from "./AdminRoutes";
 
 import ContactUs from "./../pages/ContactUs/ContactUs";
 import AboutUs from "./../pages/AboutUs/AboutUs";
+import GotMarried from "../pages/Dashboard/User/GotMarried";
 
 const Routes = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const Routes = createBrowserRouter([
       {
         path: "favorite-biodata",
         element: <FavoritesBioData />,
+      },
+      {
+        path: "got-married",
+        element: <GotMarried />,
       },
 
       //admin

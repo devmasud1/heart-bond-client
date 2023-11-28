@@ -56,7 +56,7 @@ const SuccessStories = () => {
       >
         {sortedReviews?.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="flex flex-col bg-white shadow-lg rounded-md overflow-hidden">
+            <div className="flex flex-col bg-white shadow-lg rounded-md overflow-hidden h-96 mb-8">
               <img
                 src={review.coupleImage}
                 alt="Couple"
@@ -76,7 +76,7 @@ const SuccessStories = () => {
                     ))}
                   </Rating>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 mb-5">
                   {review.successStoryText}
                 </p>
               </div>

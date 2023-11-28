@@ -84,6 +84,20 @@ const DashboardLayout = () => {
           Favourites Biodata
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashboard/got-married"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          Got Married
+        </NavLink>
+      </li>
     </>
   );
 
