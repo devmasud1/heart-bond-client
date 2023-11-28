@@ -62,7 +62,7 @@ const ApprovedPremium = () => {
                   {user.status === "premium" ? (
                     <button
                       disabled
-                      className="bg-zinc-600 hover:bg-zinc-500 hover:text-white text-slate-200 py-1 px-2 rounded"
+                      className="bg-zinc-600  text-slate-200 py-1 px-2 rounded"
                     >
                       premium member
                     </button>

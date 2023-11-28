@@ -20,7 +20,8 @@ import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AdminRoutes from "./AdminRoutes";
 import Dashboard from "../pages/Dashboard/Dashboard";
-
+import ContactUs from "./../pages/ContactUs/ContactUs";
+import AboutUs from "./../pages/AboutUs/AboutUs";
 
 const Routes = createBrowserRouter([
   {
@@ -60,7 +61,6 @@ const Routes = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/premium-bioData/${params.id}`),
       },
-
       {
         path: "/login",
         element: <Login />,
@@ -68,6 +68,14 @@ const Routes = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/about",
+        element: <AboutUs />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
     ],
   },

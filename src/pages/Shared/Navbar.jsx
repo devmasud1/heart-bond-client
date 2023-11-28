@@ -24,7 +24,6 @@ const NavBar = () => {
     };
   }, []);
 
-
   const handleSignOutUser = () => {
     const loadingToast = toast.loading("Loading...");
     userSignOut()
@@ -95,20 +94,22 @@ const NavBar = () => {
         </NavLink>
       </li>
 
-      <li className="hover:text-orange-600 transition duration-300 ease-in-out">
-        <NavLink
-          to="dashboard"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-orange-600 border-b-2 border-orange-600"
-              : ""
-          }
-        >
-          DASHBOARD
-        </NavLink>
-      </li>
+      {user && (
+        <li className="hover:text-orange-600 transition duration-300 ease-in-out">
+          <NavLink
+            to="dashboard"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "text-orange-600 border-b-2 border-orange-600"
+                : ""
+            }
+          >
+            DASHBOARD
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -150,8 +151,6 @@ const NavBar = () => {
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignOutUser}>Sign out</Dropdown.Item>
           </Dropdown>

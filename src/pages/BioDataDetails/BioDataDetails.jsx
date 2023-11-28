@@ -20,6 +20,7 @@ const BioDataDetails = () => {
   const [isPremium] = usePremium();
 
   const {
+    _id,
     Age,
     Biodata_Id,
     Biodata_Type,

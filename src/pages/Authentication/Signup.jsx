@@ -19,7 +19,7 @@ const Signup = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photoUrl = form.photoUrl.value;
-    const loadingToast = toast.loading("loading...");
+
     createUser(email, password).then(() => {
       updateUserProfile(name, photoUrl);
 
@@ -27,6 +27,7 @@ const Signup = () => {
         name: name,
         email: email,
       };
+      const loadingToast = toast.loading("loading...");
       axiosPublic
         .post("/users", userInfo)
         .then((res) => {
@@ -36,14 +37,15 @@ const Signup = () => {
           form.reset();
           navigate(from, { replace: true });
         })
+
         .catch((err) => {
           toast.dismiss(loadingToast);
           toast.error("something wrong!", err.message);
           form.reset();
         });
-    });
-
-    // console.log(name, email, password, photoUrl);
+    })
+    
+    toast.error("user already exist")
   };
 
   return (
