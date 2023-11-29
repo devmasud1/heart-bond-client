@@ -163,6 +163,20 @@ const DashboardLayout = () => {
           Approved Contact Request
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashboard/success-story"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "border-b-2 border-orange-600"
+              : ""
+          }
+        >
+          success story
+        </NavLink>
+      </li>
     </>
   );
 

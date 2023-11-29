@@ -5,6 +5,7 @@ import { Button, Table } from "flowbite-react";
 import { MdDeleteForever } from "react-icons/md";
 import useAllBioData from "../../../hook/useAllBioData";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const MyContactRequest = () => {
   const axiosPublic = useAxiosPublic();
@@ -29,19 +30,31 @@ const MyContactRequest = () => {
   });
 
   const handleReqItemDelete = (id) => {
-    axiosPublic.delete(`/delete-request/${id}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        toast.success("delete your request", {
-          position: "top-right",
-          autoClose: 12,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/delete-request/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            toast.success("delete your request", {
+              position: "top-right",
+              autoClose: 12,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+            refetch();
+          }
         });
-        refetch();
       }
     });
   };

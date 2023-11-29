@@ -1,14 +1,19 @@
-import { Button, Label, TextInput, Textarea } from "flowbite-react";
+import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
 import useAxiosPublic from "./../../../hook/useAxiosPublic";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const GotMarried = () => {
   const axiosPublic = useAxiosPublic();
+  const [selectedGender, setSelectedGender] = useState("");
+
+  const handleGenderChange = (e) => {
+    setSelectedGender(e.target.value);
+  };
+
   const handleAddReview = async (e) => {
     e.preventDefault();
-
     const form = e.target;
-
     const selfBiodata = form.selfBiodata.value;
     const partnerBiodata = form.partnerBiodata.value;
     const coupleImage = form.image.value;
@@ -21,13 +26,14 @@ const GotMarried = () => {
       partnerBiodata,
       coupleImage,
       marriageDate,
+      gender: selectedGender,
       reviewStar,
       successStoryText,
     };
 
     axiosPublic.post("/review", reviewInfo).then((res) => {
       if (res.data.insertedId) {
-        toast.success("you review successfully added");
+        toast.success("review done!");
         form.reset();
       }
     });
@@ -92,18 +98,29 @@ const GotMarried = () => {
               <TextInput id="date" type="date" name="date" required />
             </div>
           </div>
-
-          <div className="lg:w-1/2 ">
-            <div className="mb-2 block">
-              <Label htmlFor="rating" value="Rating" />
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-5 space-y-4 lg:space-y-0">
+            <div className="lg:w-1/2">
+              <div className="mb-2 block">
+                <Label htmlFor="gender" value="Biodata type" />
+              </div>
+              <Select onChange={handleGenderChange} id="gender" required>
+                <option>Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </Select>
             </div>
-            <TextInput
-              id="rating"
-              type="text"
-              name="reviewStar"
-              placeholder="type rating number 5"
-              required
-            />
+            <div className="lg:w-1/2 ">
+              <div className="mb-2 block">
+                <Label htmlFor="rating" value="Rating" />
+              </div>
+              <TextInput
+                id="rating"
+                type="text"
+                name="reviewStar"
+                placeholder="type rating number 5"
+                required
+              />
+            </div>
           </div>
 
           <div className="lg:w-1/2">

@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hook/useAxiosSecure";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+
 
 const ManageUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,40 +14,67 @@ const ManageUser = () => {
       return res.data;
     },
   });
+  // console.log(users)
 
   const makePremium = (id) => {
-    axiosSecure.patch(`/users/make-premium/${id}`).then((res) => {
-      if (res.data.modifiedCount) {
-        toast.success("this user premium now", {
-          position: "top-right",
-          autoClose: 12,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "make this user premium!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/make-premium/${id}`).then((res) => {
+          if (res.data.modifiedCount) {
+            toast.success("this user premium now", {
+              position: "top-right",
+              autoClose: 12,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+          }
+          refetch();
         });
       }
-      refetch();
     });
+    
   };
   const makeAdmin = (id) => {
-    axiosSecure.patch(`/users/${id}`).then((res) => {
-      if (res.data.modifiedCount) {
-        toast.success("this user is admin now", {
-          position: "top-right",
-          autoClose: 12,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
+    Swal.fire({
+      title: "Are you sure?",
+      text: "make this user to admin!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/${id}`).then((res) => {
+          if (res.data.modifiedCount) {
+            toast.success("this user is admin now", {
+              position: "top-right",
+              autoClose: 12,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+          }
+          refetch();
         });
       }
-      refetch();
     });
+   
   };
   return (
     <div className="lg:p-8">

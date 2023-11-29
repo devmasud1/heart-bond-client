@@ -16,10 +16,9 @@ const PremiumMember = () => {
         {sortedProfiles.map((profile, idx) => (
           <Card
             key={idx}
-            className="full "
+            className="full"
             imgSrc={profile.profileImage}
             horizontal
-    
           >
             <div>
               <h5 className="text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
