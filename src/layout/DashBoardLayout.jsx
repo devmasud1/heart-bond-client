@@ -1,13 +1,15 @@
 import { Button, Sidebar } from "flowbite-react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import useAuth from "./../hook/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../hook/useAdmin";
+
 
 const DashboardLayout = () => {
   const [isAdmin] = useAdmin();
   const { userSignOut } = useAuth();
   const navigate = useNavigate();
+
 
   const handleLogOut = () => {
     const loadingToast = toast.loading("Loading...");
@@ -214,6 +216,9 @@ const DashboardLayout = () => {
       </li>
     </>
   );
+
+
+
 
   return (
     <div className="w-11/12 mx-auto flex">

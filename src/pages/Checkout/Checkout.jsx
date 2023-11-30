@@ -1,7 +1,6 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PageBanner from "../../components/PageBanner/PageBanner";
 import PageTitle from "../../components/PageTitle/PageTitle";
-//import { Button, Label, TextInput } from "flowbite-react";
 import useAuth from "../../hook/useAuth";
 import useAllBioData from "../../hook/useAllBioData";
 import { Elements } from "@stripe/react-stripe-js";

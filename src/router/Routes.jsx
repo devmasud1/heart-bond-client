@@ -47,7 +47,7 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/biodata/${params.id}`),
+          fetch(`https://hurt-bond-server.vercel.app/biodata/${params.id}`),
       },
       {
         path: "/checkout/:biodataId",
@@ -61,7 +61,7 @@ const Routes = createBrowserRouter([
         path: "/premium-member/:id",
         element: <PremiumMemberDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/premium-bioData/${params.id}`),
+          fetch(`https://hurt-bond-server.vercel.app/premium-bioData/${params.id}`),
       },
       {
         path: "/login",

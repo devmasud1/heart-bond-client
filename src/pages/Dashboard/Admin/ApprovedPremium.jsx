@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: premiumData = [], refetch } = useQuery({
+  const { data: premiumData = [], refetch, isLoading } = useQuery({
     queryKey: ["premiumData"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allPreRequest");

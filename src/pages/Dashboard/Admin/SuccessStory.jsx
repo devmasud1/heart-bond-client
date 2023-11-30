@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import useAxiosPublic from "../../../hook/useAxiosPublic";
+import { Modal } from "flowbite-react";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
 
 const SuccessStory = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [successStories, setSuccessStories] = useState([]);
 
   const [openModal, setOpenModal] = useState(false);
@@ -11,7 +12,7 @@ const SuccessStory = () => {
   useEffect(() => {
     const fetchSuccessStories = async () => {
       try {
-        const response = await axiosPublic.get("/success-story");
+        const response = await axiosSecure.get("/success-story");
         setSuccessStories(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -19,7 +20,7 @@ const SuccessStory = () => {
     };
 
     fetchSuccessStories();
-  }, [axiosPublic]);
+  }, [axiosSecure]);
 
   const openStoryModal = (storyText) => {
     setOpenModal(true);

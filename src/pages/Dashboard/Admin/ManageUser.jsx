@@ -14,7 +14,6 @@ const ManageUser = () => {
       return res.data;
     },
   });
-  // console.log(users)
 
   const makePremium = (id) => {
     Swal.fire({

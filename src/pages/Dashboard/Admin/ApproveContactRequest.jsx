@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./../../../hook/useAxiosSecure";
 import { toast } from "react-toastify";
 
-
 const ApproveContactRequest = () => {
   const axiosSecure = useAxiosSecure();
 
@@ -20,9 +19,7 @@ const ApproveContactRequest = () => {
 
   const approveRequest = (id) => {
     axiosSecure.patch(`/approve-request/${id}`).then((res) => {
-      if (
-        res.data.modifiedCount > 0 
-      ) {
+      if (res.data.modifiedCount > 0) {
         toast.success("request status update", {
           position: "top-right",
           autoClose: 12,
@@ -37,12 +34,12 @@ const ApproveContactRequest = () => {
       }
     });
   };
-  
 
   return (
     <div className="lg:p-8">
-   
-      <p className="text-xl font-medium mb-3 text-gray-500">Contact request: {contactRequest.length}</p>
+      <p className="text-xl font-medium mb-3 text-gray-500">
+        Contact request: {contactRequest.length}
+      </p>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border text-center">
           <thead>
@@ -68,7 +65,7 @@ const ApproveContactRequest = () => {
                       disabled
                       className="bg-zinc-600 text-slate-200 py-1 px-2 rounded"
                     >
-                     Approved
+                      Approved
                     </button>
                   ) : (
                     <button
