@@ -6,9 +6,10 @@ import MultiRangeSlider from "multi-range-slider-react";
 import "./BioData.css";
 import { Link } from "react-router-dom";
 import PageBanner from "../../components/PageBanner/PageBanner";
+import LoadingSpinner from "./../LoadingSoinner/LoadingSpinner";
 
 const BioData = () => {
-  const [allBioData] = useAllBioData();
+  const [allBioData, loading] = useAllBioData();
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [rangeValues, setRangeValues] = useState({
@@ -109,6 +110,8 @@ const BioData = () => {
         {/* Right Side: All Created Biodata */}
         <div className="w-full lg:w-3/4 ml-auto pl-8 pr-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {loading && <LoadingSpinner />}
+
             {filteredBioData.length ? (
               filteredBioData.map((bioData, idx) => (
                 <Card key={idx}>
@@ -121,10 +124,10 @@ const BioData = () => {
                     Biodata Id: {bioData?.Biodata_Id}
                   </h5>
                   <p className="font-medium text-gray-700 dark:text-gray-400">
-                   {bioData?.Name}
+                    {bioData?.Name}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                   Age: {bioData?.Age}
+                    Age: {bioData?.Age}
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Biodata Type: {bioData?.Biodata_Type}
@@ -132,7 +135,7 @@ const BioData = () => {
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Permanent Division: {bioData?.Permanent_Division}
                   </p>
-                  
+
                   <p className="font-normal text-gray-700 dark:text-gray-400">
                     Occupation: {bioData?.Occupation}
                   </p>
@@ -157,7 +160,7 @@ const BioData = () => {
               ))
             ) : (
               <p className="flex justify-center items-center h-[37vh] w-full mx-auto text-2xl">
-                No data matches
+                No data match!
               </p>
             )}
           </div>
