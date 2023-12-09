@@ -1,8 +1,9 @@
-# React + Vite
+## HeardBond
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Project feature:
 
-Currently, two official plugins are available:
+- The platform includes features such as responsive design, user authentication (login and registration), biodata creation and editing, profile browsing with filters, premium membership options, contact information request functionality, success stories showcase, user dashboard for managing biodata, favorites, and contact requests.
+- Additionally, there's an admin dashboard to manage users, approve premium requests, handle contact requests, and oversee site statistics.
+- The project requires implementing various functionalities for different user roles and ensuring a smooth user experience across devices..
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Live link] (https://heart-bond.web.app/)
